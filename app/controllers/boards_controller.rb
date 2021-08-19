@@ -6,6 +6,7 @@ class BoardsController < ApplicationController
   end
 
   def show
+    @comment = Comment.new(board_id: @board.id)
   end
 
   def new
@@ -28,9 +29,15 @@ class BoardsController < ApplicationController
   end
 
   def update
-    @board.update(board_params)
+    if @board.update(board_params)
+      redirect_to @board, notice: "#{@board.title} の掲示板を編集しました"
+    else
+      redirect_to :back, flash: {
+        board: @board,
+        error_messages: @board.errors.full_messages
+      }
+    end
 
-    redirect_to @board
   end
 
   def destroy
