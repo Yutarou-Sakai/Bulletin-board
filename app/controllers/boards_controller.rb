@@ -41,7 +41,7 @@ class BoardsController < ApplicationController
   end
 
   def destroy
-    @board.delete
+    @board.destroy
 
     redirect_to boards_path, notice: "#{@board.title} の掲示板を削除しました"
   end
