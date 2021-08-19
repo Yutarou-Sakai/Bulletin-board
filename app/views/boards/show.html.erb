@@ -11,4 +11,9 @@
 
 <%= render 'board', board: @board %>
 
-<%= render 'comment_form', comment: @comment %>
+<div class="p-comment__list">
+  <div class="p-comment__listTitle">コメント</div>
+  <%= render @board.comments %>
+</div>
+
+<%= render 'comments/form', comment: @comment %>
