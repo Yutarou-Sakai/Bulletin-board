@@ -12,6 +12,10 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+    comment = Comment.find(params[:id])
+    comment.delete
+
+    redirect_to comment.board, notice: 'コメントを削除しました'
   end
 
   private
