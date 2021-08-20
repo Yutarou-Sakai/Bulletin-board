@@ -12,10 +12,9 @@ class UsersController < ApplicationController
       session[:user_id] = user.id
       redirect_to mypage_path, notice: "ユーザー登録が完了しました"
     else
-      redirect_to :back, flash: {
-        user: user,
-        error_messages: user.errors.full_messages
-      }
+      flash[:user] = user
+      flash[:error_messages] = user.errors.full_messages
+      redirect_back fallback_location: 'http://localhost'
     end
   end
 
